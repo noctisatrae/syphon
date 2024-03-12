@@ -6,6 +6,8 @@ A simple scanner leveraging Elixir concurrency & distributed architecture.
 Scan.targets ["127.0.0.1"], ["-Pn"], 10000
 ```
 
+This will save the scan results into a text file, and automatically sort scans by date & host.
+
 ## Installation
 
 ```elixir
