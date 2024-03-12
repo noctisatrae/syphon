@@ -11,7 +11,7 @@ Scan.targets ["127.0.0.1"], ["-Pn"], 10000
 ```elixir
 def deps do
   [
-    {:syphon, git:"https://github.com/noctisatrae/syphon.git", "~> 0.1.0"}
+    {:syphon, git:"https://github.com/noctisatrae/syphon.git", tag: "0.1.0"}
   ]
 end
 ```
