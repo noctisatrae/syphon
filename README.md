@@ -1,5 +1,5 @@
 # Syphon
-A simple scanner leveraging Elixir concurrency & distributed architecture.
+A simple scanner leveraging Elixir's concurrency & distributed architecture.
 
 ```elixir
 # exemple usage with the -Pn scan
