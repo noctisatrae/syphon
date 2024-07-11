@@ -3,7 +3,11 @@ A simple scanner leveraging Elixir's concurrency & distributed architecture.
 
 ```elixir
 # exemple usage with the -Pn scan
-Scan.targets ["127.0.0.1"], ["-Pn"], 10000
+map = [
+  # {"127.0.0.1", ["-Pn"]}, # specific -Pn flag for localhost
+  {"google.com", ["-T4"]} # use default flags
+]
+Scan.targets map, ["-sV"], 10000
 ```
 
 This will save the scan results into a text file, and automatically sort scans by date & host.
@@ -17,4 +21,3 @@ def deps do
   ]
 end
 ```
-
