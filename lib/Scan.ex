@@ -39,7 +39,8 @@ defmodule Scan.Genserver do
   end
 
   def handle_continue(:start_scan, state = %{target: target, flags: flags}) do
-    cmd = "nmap #{target} #{flags}"
+    cmd = "nmap #{target} " <> Enum.join(flags, " ")
+    Logger.info(cmd)
 
     port = Port.open({:spawn, cmd}, [:binary, :exit_status])
 
