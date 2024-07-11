@@ -1,4 +1,5 @@
 defmodule Arguments do
+  @tcp_version_scan "-sV"
   @tcp_syn_scan "-sS"
   @os_detection "-O"
 
@@ -7,6 +8,7 @@ defmodule Arguments do
   @verbose_output "-v"
 
 
+  def tcp_version_scan do @tcp_version_scan end
   def tcp_syn_scan do @tcp_syn_scan end
   def os_detection do @os_detection end
   def is_privileged do @is_privileged end
