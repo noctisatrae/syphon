@@ -2,32 +2,18 @@ defmodule Scan do
   require Logger
 
   # https://hexdocs.pm/elixir/1.16.1/Port.html
-  def targets(target_map, default_flags, timeout, callback) do
-    tasks = Enum.map(target_map, fn {target, flags} ->
-      Task.async(fn -> Scan.Genserver.init(%{target: target, flags: default_flags ++ flags, timeout: timeout}) end)
+  def targets(target_map, default_flags, timeout) do
+    Enum.map(target_map, fn {target, flags} ->
+      scan_task = Scan.Genserver.start_link(target, default_flags ++ flags, timeout)
+      scan_task
     end)
-
-    results = Enum.map(tasks, fn task ->
-      Task.await(task, timeout)
-    end)
-
-    callback.()
-
-    results
   end
 
-  def targets(target_map, timeout, callback) do
-    tasks = Enum.map(target_map, fn {target, flags} ->
-      Task.async(fn -> Scan.Genserver.init(%{target: target, flags: flags, timeout: timeout}) end)
+  def targets(target_map, timeout) do
+    Enum.map(target_map, fn {target, flags} ->
+      scan_task = Scan.Genserver.start_link(target, flags, timeout)
+      scan_task
     end)
-
-    results = Enum.map(tasks, fn task ->
-      Task.await(task, timeout)
-    end)
-
-    callback.()
-
-    results
   end
 end
 
